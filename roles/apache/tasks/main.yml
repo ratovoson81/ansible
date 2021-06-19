@@ -1,0 +1,14 @@
+---
+- include: define-variables.yml
+- include: setup.yml
+
+- name: Ensure Apache has selected state and enabled on boot.
+  service:
+    name: "{{ apache_service }}"
+    state: started
+    enabled: yes
+
+# Install php if php_install is set to yes
+- name: Install php packages
+  include: "php-{{ ansible_os_family }}-install.yml"
+  when: php_install|default(False)|bool

@@ -1,0 +1,7 @@
+---
+- name: Install php on Fedora
+  yum:
+    name: "{{ php_packages + php_packages_fedora }}"
+    state: latest
+  changed_when: yes
+  notify: ["restart apache"]

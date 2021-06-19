@@ -1,0 +1,10 @@
+__postgresql_packages:
+  - postgresql
+  - postgresql-contrib
+  - python3-psycopg2
+
+utilities:
+  - wget
+  - curl
+  - ca-certificates
+  - python3-pip

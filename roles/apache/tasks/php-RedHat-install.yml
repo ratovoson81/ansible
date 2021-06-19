@@ -1,0 +1,6 @@
+---
+- include: php-Centos.yml
+  when: ansible_distribution == 'CentOS'
+
+- include: php-Fedora.yml
+  when: ansible_distribution == 'Fedora'

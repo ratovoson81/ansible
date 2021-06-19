@@ -1,0 +1,28 @@
+---
+
+# if domain_name is set to project_name, it means that Alias template will be used
+# else vhost template will be used
+- name: Add apache site configuration files.
+  template:
+    src: "{% if domain_name == project_name %}alias.j2{% else %}vhost.j2{% endif %}"
+    dest: "{{ sites_availabe }}/{{ domain_name }}.conf"
+    owner: root
+    group: root
+    mode: '0744'
+
+# - name: Stop apache2 for generating SSL certificat
+#   ansible.builtin.service:
+#     name: "{{ apache_service }}"
+#     state: stop
+
+# - name: Generate SSL certificate
+#   shell: "/usr/bin/letsencrypt certonly --standalone --agree-tos -d {{ domain_name }} --email {{ admin_email }} --renew-by-default"
+#   notify: [ "restart apache" ]
+      
+- name: Enable the site
+  ansible.builtin.file:
+    src: "{{ sites_availabe }}/{{ domain_name }}.conf"
+    dest: "{{ sites_enabled }}/{{ domain_name }}.conf"
+    owner: root
+    group: root
+    state: link

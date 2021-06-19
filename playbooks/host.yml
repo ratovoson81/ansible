@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  vars_prompt:
+  - name: target_host
+    prompt: please enter the target host IP[:ssh_port] # ask for the ip and the ssh_port of the host if the host isn't yet registred in /etc/ansible/hosts
+    private: no
+  gather_facts: no
+  tasks:
+    - add_host:
+        name: "{{ target_host }}"
+        groups: dynamically_created_hosts # the host is added in the group dynamically_created_hosts

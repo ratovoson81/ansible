@@ -1,0 +1,30 @@
+---
+apache_service: httpd
+apache_daemon: httpd
+apache_daemon_path: /usr/sbin/
+apache_server_root: /etc/httpd
+apache_conf_path: /etc/httpd/conf.d
+
+apache_vhosts_version: '2.2'
+
+__apache_packages:
+  - httpd
+  - httpd-devel
+  - mod_ssl
+  - openssh
+
+php_packages:
+  - php
+  - php-mbstring
+  - php-mcrypt
+  - php-gd
+
+php_packages_centos:
+  - php-mysql
+  - php-xml
+  - php-intl
+
+php_packages_fedora:
+  - php-cli
+  - php-fpm
+  - php-mysqlnd

@@ -1,0 +1,20 @@
+---
+# tasks file for confmysql
+- include: define-variables.yml
+
+- name: Create database
+  mysql_db:
+    login_unix_socket: "{{ url_login_unix_socket }}"
+    name: "{{ project_name }}"
+    state: present
+
+- name: Assign privileges
+  mysql_user:
+    login_unix_socket: "{{ url_login_unix_socket }}"
+    name: "{{ project_user }}"
+    host:  localhost
+    password: "{{ db_password }}"
+    priv: "{{ project_name }}.*:ALL"
+    state: present
+
+

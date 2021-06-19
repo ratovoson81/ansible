@@ -1,0 +1,10 @@
+---
+# tasks file for postgresql
+- include: define-variables.yml
+- include: setup.yml
+
+- name: Enable and start postgresql service
+  ansible.builtin.service:
+    name: postgresql
+    state: started
+    enabled: yes

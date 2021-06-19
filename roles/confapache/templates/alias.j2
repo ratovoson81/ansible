@@ -1,0 +1,9 @@
+
+Alias /{{ domain_name }} {{ document_root }}
+DirectoryIndex index.html index.html index.php index.php4 index.php5
+
+<Directory {{ document_root }}>
+	Options -Indexes +FollowSymLinks +MultiViews
+	AllowOverride All
+	Require all granted
+</Directory>
