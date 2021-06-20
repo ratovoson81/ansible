@@ -29,3 +29,8 @@
   ansible.builtin.file:
     path: "/home/{{ project_user }}"
     mode: "0755"
+
+- name: Put SELinux in permissive mode, logging actions that would be blocked.
+  ansible.posix.selinux:
+    policy: targeted
+    state: permissive
