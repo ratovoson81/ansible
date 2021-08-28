@@ -44,6 +44,6 @@
 vmtest
 nagios.ingenosya.eu:6622
 s1:6622
-vmfedora	ansible_user=UserAnsible
+fedora	ansible_user=UserAnsible
 contabo7:6622
 localhost
