@@ -5,5 +5,5 @@
 
 - name: Install python module
   pip:
-    name: "configparser,mysql-connector"
+    name: "configparser,mysql-connector,MySQL-python"
     state: present
