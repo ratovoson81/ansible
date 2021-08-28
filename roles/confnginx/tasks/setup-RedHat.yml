@@ -1,7 +1,7 @@
 ---
 - name: Add nginx site configuration files.
   template:
-    src: "{% if domain_name == project_name %}alias.j2{% endif %}"
+    src: "{% if domain_name == project_name %}alias.j2{% else %}vhost.j2{% endif %}"
     dest: "{% if domain_name == project_name %}{{ sites_available }}{% else %}{{ sites_destination }}{% endif %}/{{ domain_name }}.conf"
     owner: root
     group: root
