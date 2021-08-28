@@ -21,10 +21,6 @@
       salt_size: 7
       unsafe: yes # allow special characters 
 
-    - name: root_db_password
-      prompt: Enter the database root password
-      unsafe: yes # allow special characters
-
     - name: db_password
       prompt: Enter the database password (lenght > 6)
       confirm: yes
@@ -41,10 +37,6 @@
 
     - name: git_url
       prompt: Enter the git url of projet 
-      private: no
-
-    - name: update_cache
-      prompt: Enter yes or no to update paquet list cache
       private: no
 
   pre_tasks:
@@ -68,5 +60,5 @@
       when: use_ssl['user_input'] is defined
 
   roles:
-    - role: "confmysql"
-    - role: "confnginx"
+      - role: "confmysql"
+      - role: "confnginx"

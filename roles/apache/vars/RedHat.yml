@@ -12,7 +12,6 @@ __apache_packages:
   - httpd-devel
   - mod_ssl
   - openssh
-  - git
 
 php_packages:
   - php

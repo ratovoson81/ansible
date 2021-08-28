@@ -12,6 +12,4 @@ php_modules:
   - php
   - php-mysql
   - php-pgsql
-  - php-mbstring
-  - php-mcrypt
-  - php-gd
+  - libapache2-mod-php

@@ -6,4 +6,3 @@
   hosts: dynamically_created_hosts
   roles:
     - role: "nginx"
-      php_install: yes

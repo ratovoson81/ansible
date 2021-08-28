@@ -26,10 +26,6 @@
       confirm: yes
       unsafe: yes # allow special characters 
 
-    - name: root_db_password
-      prompt: Enter the database root password
-      unsafe: yes # allow special characters
-
     - name: index_dir 
       prompt: Enter the project relative location of the index file (leave blank if it's /)
       private: no
@@ -41,10 +37,6 @@
 
     - name: git_url
       prompt: Enter the git url of projet 
-      private: no
-
-    - name: update_cache
-      prompt: Enter yes or no to update paquet list cache
       private: no
 
   pre_tasks:
@@ -68,5 +60,5 @@
       when: use_ssl['user_input'] is defined
 
   roles:
-    - role: "confmysql"
-    - role: "confapache"
+      - role: "confmysql"
+      - role: "confapache"

@@ -5,15 +5,15 @@
     name: "{{ mysql_packages }}"
     state: installed
 
-#- name: Install alternatives of python3
-#  shell: alternatives --install /usr/bin/python python /usr/bin/python3 1
-#  args:
-#    executable: /bin/bash
+- name: Install alternatives of python3
+  shell: alternatives --install /usr/bin/python python /usr/bin/python3 1
+  args:
+    executable: /bin/bash
 
-#- name: Set python3 as default
-#  shell: update-alternatives --set python /usr/bin/python3
-#  args:
-#    executable: /bin/bash
+- name: Set python3 as default
+  shell: update-alternatives --set python /usr/bin/python3
+  args:
+    executable: /bin/bash
 
 # Active le service MariaDB
 - name: Start mariadb service

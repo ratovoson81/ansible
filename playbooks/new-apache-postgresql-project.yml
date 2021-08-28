@@ -39,10 +39,6 @@
       prompt: Enter the git url of projet 
       private: no
 
-    - name: update_cache
-      prompt: Enter yes or no to update paquet list cache
-      private: no
-
   pre_tasks:
     - assert:
         that: 
@@ -64,5 +60,5 @@
       when: use_ssl['user_input'] is defined
 
   roles:
-    - role: "confpostgres"
-    - role: "confapache"
+      - role: "confpostgres"
+      - role: "confapache"

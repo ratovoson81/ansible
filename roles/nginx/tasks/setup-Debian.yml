@@ -9,11 +9,10 @@
   apt_repository:
     repo: 'ppa:ondrej/php'
     state: 'present'
-    update_cache: "{{ update_cache }}"
+    update_cache: yes
 
 - name: Install php on Debian
   apt:
     name: "{{ php_modules }}"
     state: present
   changed_when: yes
-  when: php_install|default(False)|bool

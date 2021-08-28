@@ -10,14 +10,14 @@
     group: root
     mode: '0744'
 
-- name: Stop apache2 for generating SSL certificat
-  ansible.builtin.service:
-    name: "{{ apache_service }}"
-    state: stopped
+# - name: Stop apache2 for generating SSL certificat
+#   ansible.builtin.service:
+#     name: "{{ apache_service }}"
+#     state: stop
 
-- name: Generate SSL certificate
-  shell: "/usr/bin/letsencrypt certonly --standalone --agree-tos -d {{ domain_name }} --email {{ admin_email }} --renew-by-default"
-  notify: [ "restart apache" ]
+# - name: Generate SSL certificate
+#   shell: "/usr/bin/letsencrypt certonly --standalone --agree-tos -d {{ domain_name }} --email {{ admin_email }} --renew-by-default"
+#   notify: [ "restart apache" ]
       
 - name: Enable the site
   ansible.builtin.file:

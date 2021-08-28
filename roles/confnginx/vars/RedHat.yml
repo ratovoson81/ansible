@@ -1,4 +1,4 @@
-nginx_service: nginx
-nginx_user: nginx
+apache_service: nginx
+apache_user: nginx
 url_php_fpm: /var/run/php-fpm/www.sock
 sites_available: "/etc/nginx/default.d"

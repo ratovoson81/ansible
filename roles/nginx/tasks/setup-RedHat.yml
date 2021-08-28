@@ -16,4 +16,3 @@
     name: "{{ php_modules }}"
     state: latest
   changed_when: yes
-  when: php_install|default(False)|bool

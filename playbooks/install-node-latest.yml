@@ -15,11 +15,7 @@
       encrypt: sha512_crypt
       confirm: yes
       salt_size: 7
-      unsafe: yes # allow special characters
-
-    - name: update_cache
-      prompt: Enter yes or no to update paquet list cache
-      private: no 
+      unsafe: yes # allow special characters 
 
   pre_tasks:
     - assert:
