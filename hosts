@@ -41,9 +41,13 @@
 # leading 0s:
 
 #db-[99:101]-node.example.com
-vmtest
-nagios.ingenosya.eu:6622
-s1:6622
-fedora	ansible_user=UserAnsible
-contabo7:6622
-localhost
+#vmtest
+#nagios.ingenosya.eu:6622
+#s1:6622
+#fedora	ansible_user=UserAnsible
+#contabo7:6622
+#localhost
+  
+all:
+  hosts:
+    192.168.137.59:
