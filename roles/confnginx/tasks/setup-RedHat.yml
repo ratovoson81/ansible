@@ -1,11 +1,11 @@
 ---
 - name: Add nginx site configuration files.
   template:
-    src: "{% if domain_name == project_name %}alias.j2{% else %}vhost.j2{% endif %}"
+    src: "{% if domain_name == project_name %}alias.j2"
     dest: "{% if domain_name == project_name %}{{ sites_available }}{% else %}{{ sites_destination }}{% endif %}/{{ domain_name }}.conf"
     owner: root
     group: root
-    mode: '0744'
+    mode: "0744"
   notify: ["restart nginx"]
 
 # - name: Stop nginx for generating SSL certificat
