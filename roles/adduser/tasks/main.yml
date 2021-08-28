@@ -3,8 +3,7 @@
 - name: Create new user
   ansible.builtin.user:
     name: "{{ project_user }}"
-    password: "{{ project_ssh_password }}" 
+    password: "{{ project_ssh_password | password_hash('sha512') }}"
     shell: /bin/bash
     create_home: yes
     append: yes
-
