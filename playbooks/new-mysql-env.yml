@@ -1,0 +1,35 @@
+---
+- name: Include hosts playbook
+  import_playbook: host.yml # include the host.yml to ask the target host to which the playbook should be run
+
+- name: Prompt user info
+  hosts: dynamically_created_hosts
+
+  vars_prompt:
+    - name: project_name
+      prompt: Enter the project name 
+      private: no
+
+    - name: project_user
+      prompt: Enter the projet user 
+      private: no
+
+    - name: db_password
+      prompt: Enter the database password (lenght > 6)
+      confirm: yes
+      unsafe: yes # allow special characters 
+
+    - name: root_db_password
+      prompt: Enter the database root password
+      unsafe: yes # allow special characters
+
+  pre_tasks:
+    - assert:
+        that: 
+          - project_name | length >= 3
+          - project_user | length >= 3
+          - db_password | length > 6
+
+  roles:
+    - role: "confmysql"
+    

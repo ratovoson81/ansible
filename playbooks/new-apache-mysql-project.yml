@@ -2,7 +2,7 @@
 - name: Include hosts playbook
   import_playbook: host.yml # include the host.yml to ask the target host to which the playbook should be run
 
-- name: "Prompt user info"
+- name: Prompt user info
   hosts: dynamically_created_hosts
 
   vars_prompt:
@@ -26,6 +26,10 @@
       confirm: yes
       unsafe: yes # allow special characters 
 
+    - name: root_db_password
+      prompt: Enter the database root password
+      unsafe: yes # allow special characters
+
     - name: index_dir 
       prompt: Enter the project relative location of the index file (leave blank if it's /)
       private: no
@@ -37,6 +41,10 @@
 
     - name: git_url
       prompt: Enter the git url of projet 
+      private: no
+
+    - name: update_cache
+      prompt: Enter yes or no to update paquet list cache
       private: no
 
   pre_tasks:
@@ -58,10 +66,7 @@
     - set_fact:
         use_ssl: "{{ use_ssl['user_input'] }}"
       when: use_ssl['user_input'] is defined
-    - debug:
-        msg: "{{use_ssl}}"
 
   roles:
-      - role: "adduser"
-      - role: "confmysql"
-      - role: "confapache"
+    - role: "confmysql"
+    - role: "confapache"

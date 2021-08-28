@@ -1,0 +1,30 @@
+---
+# tasks file for mysql
+
+- name: Install utilities
+  apt:
+    name: "{{ utilities }}"
+    state: present
+    #update_cache: "{{ update_cache }}" 
+
+- name: Install MySQL
+  apt:
+    name: "{{ mysql_packages }}"
+    state: present
+    #update_cache: "{{ update_cache }}" 
+
+- name: Install alternatives of python3
+  shell: /usr/bin/update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+  args:
+    executable: /bin/bash
+
+- name: Set python3 as default
+  shell: /usr/bin/update-alternatives --set python /usr/bin/python3
+  args:
+    executable: /bin/bash
+
+- name: Enable and start mysql service
+  ansible.builtin.service:
+    name: mysql
+    state: started
+    enabled: yes

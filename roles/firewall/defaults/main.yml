@@ -1,0 +1,6 @@
+---
+# defaults file for confmysql
+
+project_name: "test"
+project_user: "henintsoa"
+db_password: "admin"

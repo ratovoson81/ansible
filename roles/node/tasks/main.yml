@@ -1,0 +1,28 @@
+---
+# tasks file for node
+- include: define-variables.yml
+- include: setup.yml
+
+- name: Install NVM
+  become: true
+  become_user: "{{ project_user }}" 
+  shell: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  args:
+    executable: /bin/bash
+    chdir: "/home/{{ project_user }}"
+
+- name: Update bashrc
+  become: true
+  become_user: "{{ project_user }}"
+  shell: source "/home/{{ project_user }}/.bashrc" 
+  args:
+    executable: /bin/bash
+    chdir: "/home/{{ project_user }}"
+
+- name: Install latest node
+  become: true
+  become_user: "{{ project_user }}"
+  shell: source "/home/{{ project_user }}/.nvm/nvm.sh" && nvm install node
+  args:
+    chdir: "/home/{{ project_user }}"
+    executable: /bin/bash

@@ -1,0 +1,7 @@
+---
+# defaults file for confapache
+
+working_dir: "/home/{{ project_user }}/{{ project_name }}"
+document_root: "{{ working_dir }}/{{ index_dir }}"
+admin_email: "admin@ingenosya.mg"
+use_ssl: "yes"

@@ -1,0 +1,33 @@
+---
+# tasks file for postgresql
+
+- name: Install setfacl support
+  become: yes
+  yum: pkg=acl
+
+- name: Install utilities paquets
+  yum:
+    name: "{{ utilities }}"
+    state: present
+    update_cache: "{{ update_cache }}"
+
+- name: Install alternatives of python3
+  shell: alternatives --install /usr/bin/python python /usr/bin/python3 1
+  args:
+    executable: /bin/bash
+
+- name: Set python3 as default
+  shell: update-alternatives --set python /usr/bin/python3
+  args:
+    executable: /bin/bash
+
+- name: Install postgresql RedHat
+  yum:
+    name: "{{ postgresql_packages }}"
+    state: present
+    update_cache: "{{ update_cache }}"
+
+- name: Initialize the Database
+  command: postgresql-setup initdb
+  args:
+    creates: /var/lib/pgsql/data

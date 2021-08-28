@@ -41,5 +41,9 @@
 # leading 0s:
 
 #db-[99:101]-node.example.com
-centos
-192.168.88.108
+vmtest
+nagios.ingenosya.eu:6622
+s1:6622
+vmfedora	ansible_user=UserAnsible
+contabo7:6622
+localhost

@@ -1,0 +1,19 @@
+---
+- name: Epel activation
+  yum:
+    name: "epel-release"
+    state: present
+  when: ansible_distribution == 'CentOS'
+
+- name: Install nginx
+  yum:
+    name: "nginx"
+    state: present
+  notify: ["restart nginx"]
+
+- name: Install php on Fedora
+  yum:
+    name: "{{ php_modules }}"
+    state: latest
+  changed_when: yes
+  when: php_install|default(False)|bool

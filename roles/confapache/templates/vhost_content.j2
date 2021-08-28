@@ -1,0 +1,15 @@
+{% macro vhost_content() %}
+DocumentRoot {{document_root}}
+DirectoryIndex index.html index.htm index.php index.php4 index.php5
+
+<Directory {{ document_root }}>
+        Options -Indexes +FollowSymLinks +MultiViews
+        AllowOverride All
+        Require all granted
+</Directory>
+
+ErrorLog ${APACHE_LOG_DIR}/{{ domain_name }}.error.log  
+CustomLog ${APACHE_LOG_DIR}/{{ domain_name }}.access.log combined
+{% endmacro %}
+
+

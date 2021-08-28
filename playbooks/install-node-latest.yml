@@ -1,0 +1,31 @@
+---
+- name: Include hosts playbook
+  import_playbook: host.yml # include the host.yml to ask the target host to which the playbook should be run
+
+- name: Prompt user info
+  hosts: dynamically_created_hosts
+
+  vars_prompt:
+    - name: project_user
+      prompt: Enter the projet user 
+      private: no
+
+    - name: project_ssh_password
+      prompt: Enter the project user's ssh password (lenght > 6)
+      encrypt: sha512_crypt
+      confirm: yes
+      salt_size: 7
+      unsafe: yes # allow special characters
+
+    - name: update_cache
+      prompt: Enter yes or no to update paquet list cache
+      private: no 
+
+  pre_tasks:
+    - assert:
+        that: 
+          - project_user | length >= 3
+          - project_ssh_password | length > 6
+
+  roles:
+      - role: "node"

@@ -1,0 +1,8 @@
+---
+# tasks file for node
+
+- name: Install utilities paquets
+  yum:
+    name: "{{ utilities }}"
+    state: present
+    update_cache: "{{ update_cache }}"

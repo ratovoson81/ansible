@@ -1,0 +1,23 @@
+---
+# Installation des paquets mariadb serveur et son extension Python
+- name: Mariadb-server installation
+  yum:
+    name: "{{ mysql_packages }}"
+    state: installed
+
+- name: Install alternatives of python3
+  shell: alternatives --install /usr/bin/python python /usr/bin/python3 1
+  args:
+    executable: /bin/bash
+
+- name: Set python3 as default
+  shell: update-alternatives --set python /usr/bin/python3
+  args:
+    executable: /bin/bash
+
+# Active le service MariaDB
+- name: Start mariadb service
+  service:
+    name: "mariadb"
+    state: started
+    enabled: yes

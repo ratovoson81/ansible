@@ -1,0 +1,4 @@
+apache_service: apache2
+apache_user: www-data
+sites_availabe: "/etc/apache2/sites-available"
+sites_enabled: "/etc/apache2/sites-enabled"

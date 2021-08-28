@@ -1,0 +1,17 @@
+---
+apache_service: apache2
+
+__apache_packages:
+  - apache2
+  - libapache2-mod-php
+  - apache2-utils
+  - git
+  - letsencrypt
+
+php_modules:
+  - php
+  - php-mysql
+  - php-pgsql
+  - php-mbstring
+  - php-mcrypt
+  - php-gd

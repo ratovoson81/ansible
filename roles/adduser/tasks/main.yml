@@ -1,0 +1,10 @@
+---
+# tasks file for adduser
+- name: Create new user
+  ansible.builtin.user:
+    name: "{{ project_user }}"
+    password: "{{ project_ssh_password }}" 
+    shell: /bin/bash
+    create_home: yes
+    append: yes
+

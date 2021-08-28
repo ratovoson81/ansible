@@ -1,0 +1,12 @@
+---
+# tasks file for confnginx
+- include: define-variables.yml
+
+- name: Add vhost configuration files.
+  template:
+    src: proxied_server.j2
+    dest: "{{ sites_enabled }}/{{ domain_name }}.conf"
+    owner: root
+    group: root
+    mode: '0744'
+  notify: ["restart nginx"]

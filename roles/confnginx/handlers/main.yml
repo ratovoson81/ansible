@@ -1,0 +1,6 @@
+---
+# handlers file for confnginx
+- name: restart nginx
+  ansible.builtin.service:
+    name: "nginx"
+    state: restarted

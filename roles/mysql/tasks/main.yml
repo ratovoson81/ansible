@@ -1,0 +1,10 @@
+---
+# tasks file for mysql
+- include: define-variables.yml
+- include: setup.yml
+
+- name: Install python module
+  pip:
+    name: "configparser,mysql-connector,PyMySQL"
+    state: present
+

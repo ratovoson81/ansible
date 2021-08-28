@@ -1,0 +1,7 @@
+nginx_service: nginx
+nginx_user: nginx
+url_php_fpm: /var/run/php/php-fpm.sock
+sites_available: "/etc/nginx/alias.d"
+sites_enabled: "/etc/nginx/sites-enabled"
+index_config: "index index.html index.htm index.nginx-debian.html;"
+index_config_with_php: "index index.php index.html index.htm index.nginx-debian.html;"

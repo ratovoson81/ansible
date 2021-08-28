@@ -1,0 +1,10 @@
+location /{{ domain_name }} {
+    alias {{ document_root }};
+
+    location ~ \.php$ {
+        try_files $uri $uri/ =404;
+        fastcgi_pass unix:{{ url_php_fpm }};
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $request_filename;
+    }
+}

@@ -1,0 +1,68 @@
+---
+- name: Include hosts playbook
+  import_playbook: host.yml # include the host.yml to ask the target host to which the playbook should be run
+
+- name: Prompt user info
+  hosts: dynamically_created_hosts
+
+  vars_prompt:
+    - name: project_name
+      prompt: Enter the project name 
+      private: no
+
+    - name: project_user
+      prompt: Enter the projet user 
+      private: no
+
+    - name: project_ssh_password
+      prompt: Enter the project user's ssh password (lenght > 6)
+      encrypt: sha512_crypt
+      confirm: yes
+      salt_size: 7
+      unsafe: yes # allow special characters 
+
+    - name: db_password
+      prompt: Enter the database password (lenght > 6)
+      confirm: yes
+      unsafe: yes # allow special characters 
+
+    - name: index_dir 
+      prompt: Enter the project relative location of the index file (leave blank if it's /)
+      private: no
+
+    - name: domain_name
+      prompt: Enter the domain name (type no if, you want to use Alias)
+      default: "no"
+      private: no
+
+    - name: git_url
+      prompt: Enter the git url of projet 
+      private: no
+
+    - name: update_cache
+      prompt: Enter yes or no to update paquet list cache
+      private: no
+
+  pre_tasks:
+    - assert:
+        that: 
+          - project_name | length >= 3
+          - project_user | length >= 3
+          - project_ssh_password | length > 6
+          - db_password | length > 6
+          - domain_name is regex("^(no)|([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$") # no or correct domain name structure
+    - pause:
+        prompt: Do you want SSL encryption [yes|no]
+      when: domain_name != "no"
+      register: use_ssl
+    - assert:
+        that:
+          - use_ssl['user_input'] is regex("^(yes)|(no)$")
+      when: use_ssl['user_input'] is defined
+    - set_fact:
+        use_ssl: "{{ use_ssl['user_input'] }}"
+      when: use_ssl['user_input'] is defined
+
+  roles:
+    - role: "confpostgres"
+    - role: "confapache"

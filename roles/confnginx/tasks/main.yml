@@ -1,0 +1,34 @@
+---
+# tasks file for confnginx
+- include: define-variables.yml
+
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Create the working directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ working_dir }}"
+    state: directory
+    mode: "0775"
+
+- name: Clonning the repo
+  ansible.builtin.git:
+    repo: "{{ git_url }}"
+    dest: "{{ working_dir }}"
+
+- name: Change file ownership, group and permissions of the working_dir
+  ansible.builtin.file:
+    path: "{{ working_dir }}"
+    owner: "{{ project_user }}"
+    group: "{{ nginx_user }}"
+    mode: "0775"
+    recurse: yes    
+
+# if domain_name is set to 'no', it means that Alias will be used
+# else domain_name will be used
+- name: Setting domain_name 
+  set_fact:
+    domain_name: "{% if domain_name == 'no' %}{{ project_name }}{% else %}{{ domain_name }}{% endif %}"
