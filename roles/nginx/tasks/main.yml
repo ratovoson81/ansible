@@ -1,11 +1,11 @@
 ---
 - include: define-variables.yml
 
-#- name: Stop service apache
-#  service:
-#    name: "{{ apache_service }}"
-#    state: stopped
-#    enabled: no
+- name: Stop service apache
+  service:
+    name: "{{ apache_service }}"
+    state: stopped
+    enabled: no
 
 - include: setup.yml
 
@@ -14,4 +14,3 @@
     name: "nginx"
     state: started
     enabled: yes
-

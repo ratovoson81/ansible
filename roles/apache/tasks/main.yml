@@ -1,5 +1,12 @@
 ---
 - include: define-variables.yml
+
+- name: Stop service nginx
+  service:
+    name: "nginx"
+    state: stopped
+    enabled: no
+
 - include: setup.yml
 
 - name: Ensure Apache has selected state and enabled on boot.
