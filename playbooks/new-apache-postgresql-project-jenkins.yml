@@ -1,0 +1,7 @@
+---
+- name: new apache postgresql project jenkins
+  hosts: all
+  become: yes
+  roles:
+    - role: "confpostgres"
+    - role: "confapache"

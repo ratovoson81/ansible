@@ -1,11 +1,11 @@
 ---
 - name: Add apache site configuration files.
   template:
-    src: "{% if domain_name == project_name %}alias.j2{% else %}vhost.j2{% endif %}"
-    dest: "{% if domain_name == project_name %}{{ sites_available }}{% else %}{{ sites_destination }}{% endif %}/{{ domain_name }}.conf"
+    src: "alias.j2"
+    dest: "{{ sites_available }}/{{ project_name }}.conf"
     owner: nginx
     group: nginx
-    mode: '0744'
+    mode: "0744"
   notify: ["restart nginx"]
 
 # - name: Stop apache2 for generating SSL certificat
