@@ -25,7 +25,7 @@
 # else domain_name will be used
 - name: Setting domain_name
   set_fact:
-    domain_name: "{% if domain_name == '' %}{{ project_name }}{% else %}{{ domain_name }}{% endif %}"
+    domain_name: "{{ project_name }}"
 
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
