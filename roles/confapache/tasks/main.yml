@@ -23,9 +23,9 @@
 
 # if domain_name is set to 'no', it means that Alias will be used
 # else domain_name will be used
-- name: Setting domain_name
-  set_fact:
-    domain_name: "{{ project_name }}"
+#- name: Setting domain_name
+#  set_fact:
+#    domain_name: "{{ project_name }}"
 
 - include: setup-RedHat.yml
   when: ansible_os_family == 'RedHat'
